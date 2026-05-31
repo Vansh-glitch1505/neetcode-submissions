@@ -1,0 +1,25 @@
+class Solution:
+    def encode(self, strs: List[str]) -> str:
+        res = ""
+        for s in strs:
+            res += str(len(s)) + "#" + s
+        return res
+
+    def decode(self, s: str) -> List[str]:
+        res = []
+        i = 0
+
+        while i < len(s):
+            j = i
+            while s[j] != "#":
+                j += 1
+            
+            # Extract the length number (between i and j)
+            length = int(s[i:j])
+            
+            start_of_word = j + 1
+            end_of_word = j + 1 + length
+            res.append(s[start_of_word:end_of_word])
+            i = end_of_word
+            
+        return res
